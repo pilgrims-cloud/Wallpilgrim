@@ -1,0 +1,1030 @@
+/* Pilgrim Wallet - Crypto & Multi-Currency Wallet */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    min-height: 100vh;
+    color: #ffffff;
+}
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* Login Section */
+.login-container {
+    max-width: 500px;
+    margin: 100px auto;
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: fadeInUp 0.6s ease;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo {
+    margin-bottom: 20px;
+}
+
+.logo-icon {
+    font-size: 4em;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.login-header h1 {
+    font-size: 2.5em;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 10px;
+}
+
+.login-header h2 {
+    font-size: 1.5em;
+    color: #e94560;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    color: #888;
+    font-size: 0.9em;
+}
+
+.owner-info {
+    background: rgba(240, 147, 251, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    text-align: center;
+    border: 1px solid rgba(240, 147, 251, 0.3);
+}
+
+.owner-card h3 {
+    margin-bottom: 15px;
+    color: #f093fb;
+}
+
+.owner-card p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #ccc;
+}
+
+.login-form {
+    margin-top: 30px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #e0e0e0;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 15px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    font-size: 1em;
+    background: #1a1a2e;
+    color: #fff;
+    transition: border-color 0.3s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: #e94560;
+}
+
+.form-group .available-balance {
+    font-size: 0.85em;
+    color: #888;
+    margin-top: 5px;
+}
+
+.btn-login {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #e94560 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.btn-login:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(233, 69, 96, 0.4);
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.register-link a {
+    color: #f093fb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+/* Dashboard */
+.dashboard-container {
+    background: #1a1a2e;
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    margin: 20px auto;
+    overflow: hidden;
+}
+
+/* Navigation */
+.navbar {
+    background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+    color: white;
+    padding: 20px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.nav-brand .logo-icon {
+    font-size: 2.5em;
+}
+
+.brand-text h2 {
+    font-size: 1.5em;
+    margin-bottom: 5px;
+}
+
+.user-email {
+    font-size: 0.85em;
+    color: #888;
+}
+
+.nav-menu {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+
+.nav-btn {
+    padding: 10px 16px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s;
+    font-weight: 500;
+    font-size: 0.9em;
+    border: 1px solid transparent;
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    background: rgba(233, 69, 96, 0.3);
+    border-color: #e94560;
+}
+
+.nav-btn.logout {
+    background: rgba(235, 51, 73, 0.3);
+    border-color: #eb3349;
+}
+
+/* Content Sections */
+.content-section {
+    padding: 30px;
+}
+
+/* Welcome Banner */
+.welcome-banner {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 30px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}
+
+.welcome-banner h2 {
+    margin-bottom: 10px;
+}
+
+/* Total Balance Card */
+.total-balance-card {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    padding: 40px;
+    border-radius: 15px;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.total-balance-card h3 {
+    margin-bottom: 20px;
+    font-size: 1.2em;
+    opacity: 0.9;
+}
+
+.balance-display {
+    font-size: 3em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+
+.balance-approx {
+    font-size: 1.5em;
+    opacity: 0.9;
+}
+
+/* Wallet Grid */
+.wallet-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.wallet-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.wallet-card:hover {
+    transform: translateY(-5px);
+    border-color: #e94560;
+}
+
+.wallet-card .coin-icon {
+    font-size: 2.5em;
+    margin-bottom: 15px;
+}
+
+.wallet-card .coin-icon.btc {
+    color: #f7931a;
+}
+
+.wallet-card .coin-icon.eth {
+    color: #627eea;
+}
+
+.wallet-card .coin-icon.usdt {
+    color: #26a17b;
+}
+
+.wallet-card .coin-icon.plg {
+    color: #ffd700;
+}
+
+.wallet-card .coin-icon.usd {
+    color: #85bb65;
+}
+
+.wallet-card .coin-icon.ngn {
+    color: #008751;
+}
+
+.wallet-card h4 {
+    margin-bottom: 15px;
+    color: #f093fb;
+}
+
+.wallet-card .balance {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.wallet-card .usd-value {
+    color: #888;
+    font-size: 0.9em;
+}
+
+/* Wallet Details */
+.wallet-details-list {
+    display: grid;
+    gap: 20px;
+}
+
+.wallet-detail-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.coin-header {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.coin-header .coin-icon {
+    font-size: 3em;
+}
+
+.coin-info h3 {
+    margin-bottom: 5px;
+}
+
+.wallet-address {
+    font-family: monospace;
+    font-size: 0.85em;
+    color: #888;
+    word-break: break-all;
+}
+
+.balance-section {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.balance-info {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.balance-info .label {
+    color: #888;
+    font-size: 0.9em;
+    margin-bottom: 5px;
+}
+
+.balance-info .balance {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 5px;
+}
+
+.balance-info .usd-value {
+    color: #4caf50;
+}
+
+.qr-section {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 15px;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.qr-section canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+.qr-section .barcode {
+    font-size: 0.8em;
+    color: #888;
+    margin-top: 10px;
+}
+
+.wallet-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-receive,
+.btn-send,
+.btn-deposit,
+.btn-withdraw {
+    flex: 1;
+    padding: 12px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-receive,
+.btn-deposit {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.btn-send,
+.btn-withdraw {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+}
+
+.btn-receive:hover,
+.btn-send:hover,
+.btn-deposit:hover,
+.btn-withdraw:hover {
+    transform: translateY(-2px);
+}
+
+/* Mining Section */
+.mining-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.mining-status-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.status-indicator .indicator {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background: #888;
+}
+
+.status-indicator.active .indicator {
+    background: #4caf50;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+}
+
+.mining-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.mining-stats .stat {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.mining-stats .stat .label {
+    color: #888;
+    font-size: 0.85em;
+    margin-bottom: 5px;
+}
+
+.mining-stats .stat .value {
+    font-size: 1.3em;
+    font-weight: 700;
+    color: #f093fb;
+}
+
+.btn-toggle-mining {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #ffd700 0%, #ffed4e 100%);
+    color: #333;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.2em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-toggle-mining:hover {
+    transform: translateY(-2px);
+}
+
+.mining-info-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.mining-info-card h3 {
+    margin-bottom: 15px;
+    color: #f093fb;
+}
+
+.mining-info-card ul {
+    list-style: none;
+    margin-bottom: 20px;
+}
+
+.mining-info-card ul li {
+    padding: 10px;
+    margin-bottom: 5px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.mining-tiers {
+    display: grid;
+    gap: 10px;
+}
+
+.tier {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+}
+
+.tier-badge {
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 0.85em;
+    font-weight: 700;
+}
+
+.mining-history,
+.recent-activity {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.mining-history h3,
+.recent-activity h3 {
+    margin-bottom: 15px;
+    color: #f093fb;
+}
+
+.history-list,
+.activity-list {
+    display: grid;
+    gap: 10px;
+}
+
+.history-item,
+.activity-item {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.history-item .amount,
+.activity-item .amount {
+    font-weight: 700;
+    color: #4caf50;
+}
+
+/* Receive Section */
+.receive-options {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.receive-option-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+    text-align: center;
+}
+
+.receive-option-card h3 {
+    margin-bottom: 10px;
+    color: #f093fb;
+}
+
+.receive-option-card p {
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.btn-receive-crypto {
+    width: 100%;
+    padding: 12px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-receive-crypto:hover {
+    transform: translateY(-2px);
+}
+
+/* Send Form */
+.send-form,
+.exchange-form {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 30px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.send-summary,
+.exchange-rate-display {
+    background: rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+}
+
+.send-summary p,
+.exchange-rate-display p {
+    margin: 8px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-send-funds,
+.btn-exchange,
+.btn-matrix-send {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-send-funds:hover,
+.btn-exchange:hover,
+.btn-matrix-send:hover {
+    transform: translateY(-2px);
+}
+
+.exchange-arrow {
+    text-align: center;
+    font-size: 2em;
+    margin: 10px 0;
+}
+
+/* Transactions Table */
+.transactions-table {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 12px;
+    overflow-x: auto;
+}
+
+.transactions-table table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px;
+}
+
+.transactions-table th,
+.transactions-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border-bottom: 1px solid #333;
+}
+
+.transactions-table th {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    font-weight: 600;
+}
+
+/* Matrix Section */
+.matrix-dashboard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.matrix-stats-card,
+.matrix-send-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.matrix-stats-card h3,
+.matrix-send-card h3 {
+    margin-bottom: 20px;
+    color: #f093fb;
+}
+
+.stat-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 12px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+
+/* Profile Section */
+.profile-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.profile-info-card,
+.security-card {
+    background: rgba(255, 255, 255, 0.05);
+    padding: 25px;
+    border-radius: 12px;
+    border: 2px solid #333;
+}
+
+.profile-info-card h3,
+.security-card h3 {
+    margin-bottom: 20px;
+    color: #f093fb;
+}
+
+.btn-save-profile,
+.btn-change-password {
+    width: 100%;
+    padding: 15px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.3s;
+}
+
+.btn-save-profile:hover,
+.btn-change-password:hover {
+    transform: translateY(-2px);
+}
+
+/* Section Header */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.section-header h2 {
+    color: #f093fb;
+}
+
+.filters {
+    display: flex;
+    gap: 10px;
+}
+
+.filters select {
+    padding: 10px 15px;
+    background: #1a1a2e;
+    color: #fff;
+    border: 2px solid #333;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* Modals */
+.modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #1a1a2e;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 2px solid #333;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    border-bottom: 2px solid #333;
+}
+
+.modal-header h3 {
+    color: #f093fb;
+}
+
+.close {
+    font-size: 2em;
+    cursor: pointer;
+    color: #888;
+}
+
+.close:hover {
+    color: #f5576c;
+}
+
+.modal-body {
+    padding: 20px;
+}
+
+.receive-details {
+    margin-bottom: 20px;
+}
+
+.wallet-address-display {
+    font-family: monospace;
+    font-size: 1em;
+    color: #4caf50;
+    word-break: break-all;
+    margin-bottom: 15px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.btn-copy {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.qr-display {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.qr-display canvas {
+    max-width: 200px;
+    height: auto;
+}
+
+.barcode-display {
+    text-align: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+}
+
+.receive-info h4 {
+    margin-bottom: 15px;
+    color: #f093fb;
+}
+
+.receive-info ol {
+    padding-left: 20px;
+}
+
+.receive-info ol li {
+    margin-bottom: 10px;
+    color: #ccc;
+}
+
+/* Notifications */
+.notification {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 20px 30px;
+    border-radius: 10px;
+    color: white;
+    font-weight: 600;
+    z-index: 1001;
+    animation: slideIn 0.3s ease;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(400px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.notification.success {
+    background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%);
+}
+
+.notification.error {
+    background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+}
+
+.notification.warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .mining-dashboard,
+    .matrix-dashboard,
+    .profile-content,
+    .balance-section {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+    }
+    
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .wallet-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .mining-stats {
+        grid-template-columns: 1fr;
+    }
+    
+    .wallet-actions {
+        flex-direction: column;
+    }
+}

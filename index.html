@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilgrim Wallet - Crypto & Multi-Currency Wallet</title>
+    <link rel="stylesheet" href="styles.css">
+<script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
+</head>
+<body>
+    <!-- Login Section -->
+    <div id="loginSection" class="login-container">
+        <div class="login-header">
+            <div class="logo">
+                <span class="logo-icon">💰</span>
+                <h1>PILGRIM WALLET</h1>
+            </div>
+            <h2>Your All-in-One Crypto Wallet</h2>
+            <p class="subtitle">Mine, Store, Trade & Receive Cryptocurrency</p>
+        </div>
+        
+        <div class="owner-info">
+            <div class="owner-card">
+                <h3>Owner Information</h3>
+                <p><strong>Name:</strong> Olawale Abdul-Ganiyu</p>
+                <p><strong>Email:</strong> adeganglobal@gmail.com</p>
+                <p><strong>Phone:</strong> +234 903 027 7275</p>
+                <p><strong>Location:</strong> Ikeja, Lagos, Ogun State, Nigeria</p>
+            </div>
+        </div>
+        
+        <form id="loginForm" class="login-form">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" id="loginEmail" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label>Password</label>
+                <input type="password" id="loginPassword" placeholder="Enter your password" required>
+            </div>
+            <button type="submit" class="btn-login" onclick="handleLogin()">
+                <span class="icon">🔓</span> Login to Wallet
+            </button>
+            <p class="register-link">
+                Don't have an account? <a href="#" onclick="showRegister()">Register Now</a>
+            </p>
+        </form>
+    </div>
+
+    <!-- Main Dashboard -->
+    <div id="dashboardSection" class="dashboard-container" style="display: none;">
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-brand">
+                <span class="logo-icon">💰</span>
+                <div class="brand-text">
+                    <h2>Pilgrim Wallet</h2>
+                    <span class="user-email" id="userEmail"></span>
+                </div>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-btn active" onclick="showSection('overview')">📊 Overview</button>
+                <button class="nav-btn" onclick="showSection('wallet')">💳 Wallet</button>
+                <button class="nav-btn" onclick="showSection('mining')">⛏️ Mining</button>
+                <button class="nav-btn" onclick="showSection('receive')">📥 Receive</button>
+                <button class="nav-btn" onclick="showSection('send')">📤 Send</button>
+                <button class="nav-btn" onclick="showSection('exchange')">🔄 Exchange</button>
+                <button class="nav-btn" onclick="showSection('transactions')">📋 Transactions</button>
+                <button class="nav-btn" onclick="showSection('matrix')">🌐 Matrix</button>
+                <button class="nav-btn" onclick="showSection('profile')">👤 Profile</button>
+                <button class="nav-btn logout" onclick="logout()">🚪 Logout</button>
+            </div>
+        </nav>
+
+        <!-- Overview Section -->
+        <div id="overviewSection" class="content-section">
+            <div class="welcome-banner">
+                <h2>Welcome back, <span id="userName">User</span></h2>
+                <p>Your multi-currency crypto wallet</p>
+            </div>
+
+            <div class="total-balance-card">
+                <h3>Total Portfolio Value</h3>
+                <div class="balance-display">
+                    <span class="currency">$</span>
+                    <span class="amount" id="totalBalanceUSD">0.00</span>
+                </div>
+                <div class="balance-approx">
+                    ≈ ₦<span id="totalBalanceNGN">0.00</span> NGN
+                </div>
+            </div>
+
+            <div class="wallet-grid">
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon btc">₿</div>
+                    <h4>Bitcoin (BTC)</h4>
+                    <p class="balance"><span id="btcBalance">0.00000000</span> BTC</p>
+                    <p class="usd-value">$<span id="btcUSDValue">0.00</span></p>
+                </div>
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon eth">Ξ</div>
+                    <h4>Ethereum (ETH)</h4>
+                    <p class="balance"><span id="ethBalance">0.00000000</span> ETH</p>
+                    <p class="usd-value">$<span id="ethUSDValue">0.00</span></p>
+                </div>
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon usdt">₮</div>
+                    <h4>Tether (USDT)</h4>
+                    <p class="balance"><span id="usdtBalance">0.00</span> USDT</p>
+                    <p class="usd-value">$<span id="usdtUSDValue">0.00</span></p>
+                </div>
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon plg">⛏️</div>
+                    <h4>Pilgrim Coin (PLG)</h4>
+                    <p class="balance"><span id="plgBalance">0.00000000</span> PLG</p>
+                    <p class="usd-value">$<span id="plgUSDValue">0.00</span></p>
+                </div>
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon usd">$</div>
+                    <h4>US Dollar (USD)</h4>
+                    <p class="balance">$<span id="usdBalance">0.00</span></p>
+                    <p class="usd-value">≈ ₦<span id="usdNGNValue">0.00</span></p>
+                </div>
+                <div class="wallet-card" onclick="showSection('wallet')">
+                    <div class="coin-icon ngn">₦</div>
+                    <h4>Nigerian Naira (NGN)</h4>
+                    <p class="balance">₦<span id="ngnBalance">0.00</span></p>
+                    <p class="usd-value">≈ $<span id="ngnUSDValue">0.00</span></p>
+                </div>
+            </div>
+
+            <div class="recent-activity">
+                <h3>📋 Recent Activity</h3>
+                <div class="activity-list" id="recentActivity">
+                    <!-- Activity will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Wallet Section -->
+        <div id="walletSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>💳 My Wallets</h2>
+            </div>
+
+            <div class="wallet-details-list">
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon btc">₿</div>
+                        <div class="coin-info">
+                            <h3>Bitcoin (BTC)</h3>
+                            <p class="wallet-address" id="btcWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance"><span id="btcWalletBalance">0.00000000</span> BTC</p>
+                            <p class="usd-value">$<span id="btcWalletUSDValue">0.00</span> USD</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="btcQR"></canvas>
+                            <p class="barcode">Barcode: <span id="btcBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-receive" onclick="receiveCrypto('BTC')">📥 Receive BTC</button>
+                        <button class="btn-send" onclick="sendCrypto('BTC')">📤 Send BTC</button>
+                    </div>
+                </div>
+
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon eth">Ξ</div>
+                        <div class="coin-info">
+                            <h3>Ethereum (ETH)</h3>
+                            <p class="wallet-address" id="ethWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance"><span id="ethWalletBalance">0.00000000</span> ETH</p>
+                            <p class="usd-value">$<span id="ethWalletUSDValue">0.00</span> USD</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="ethQR"></canvas>
+                            <p class="barcode">Barcode: <span id="ethBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-receive" onclick="receiveCrypto('ETH')">📥 Receive ETH</button>
+                        <button class="btn-send" onclick="sendCrypto('ETH')">📤 Send ETH</button>
+                    </div>
+                </div>
+
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon usdt">₮</div>
+                        <div class="coin-info">
+                            <h3>Tether (USDT)</h3>
+                            <p class="wallet-address" id="usdtWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance"><span id="usdtWalletBalance">0.00</span> USDT</p>
+                            <p class="usd-value">$<span id="usdtWalletUSDValue">0.00</span> USD</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="usdtQR"></canvas>
+                            <p class="barcode">Barcode: <span id="usdtBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-receive" onclick="receiveCrypto('USDT')">📥 Receive USDT</button>
+                        <button class="btn-send" onclick="sendCrypto('USDT')">📤 Send USDT</button>
+                    </div>
+                </div>
+
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon plg">⛏️</div>
+                        <div class="coin-info">
+                            <h3>Pilgrim Coin (PLG)</h3>
+                            <p class="wallet-address" id="plgWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance"><span id="plgWalletBalance">0.00000000</span> PLG</p>
+                            <p class="usd-value">$<span id="plgWalletUSDValue">0.00</span> USD</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="plgQR"></canvas>
+                            <p class="barcode">Barcode: <span id="plgBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-receive" onclick="receiveCrypto('PLG')">📥 Receive PLG</button>
+                        <button class="btn-send" onclick="sendCrypto('PLG')">📤 Send PLG</button>
+                    </div>
+                </div>
+
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon usd">$</div>
+                        <div class="coin-info">
+                            <h3>US Dollar (USD)</h3>
+                            <p class="wallet-address" id="usdWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance">$<span id="usdWalletBalance">0.00</span> USD</p>
+                            <p class="usd-value">≈ ₦<span id="usdWalletNGNValue">0.00</span> NGN</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="usdQR"></canvas>
+                            <p class="barcode">Barcode: <span id="usdBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-deposit" onclick="depositFiat('USD')">💳 Deposit USD</button>
+                        <button class="btn-withdraw" onclick="withdrawFiat('USD')">🏦 Withdraw USD</button>
+                    </div>
+                </div>
+
+                <div class="wallet-detail-card">
+                    <div class="coin-header">
+                        <div class="coin-icon ngn">₦</div>
+                        <div class="coin-info">
+                            <h3>Nigerian Naira (NGN)</h3>
+                            <p class="wallet-address" id="ngnWalletAddress">Generating...</p>
+                        </div>
+                    </div>
+                    <div class="balance-section">
+                        <div class="balance-info">
+                            <p class="label">Balance</p>
+                            <p class="balance">₦<span id="ngnWalletBalance">0.00</span> NGN</p>
+                            <p class="usd-value">≈ $<span id="ngnWalletUSDValue">0.00</span> USD</p>
+                        </div>
+                        <div class="qr-section">
+                            <canvas id="ngnQR"></canvas>
+                            <p class="barcode">Barcode: <span id="ngnBarcode"></span></p>
+                        </div>
+                    </div>
+                    <div class="wallet-actions">
+                        <button class="btn-deposit" onclick="depositFiat('NGN')">💳 Deposit NGN</button>
+                        <button class="btn-withdraw" onclick="withdrawFiat('NGN')">🏦 Withdraw NGN</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mining Section -->
+        <div id="miningSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>⛏️ Pilgrim Coin Mining</h2>
+                <p>Mine PLG coins starting from 0.00000001</p>
+            </div>
+
+            <div class="mining-dashboard">
+                <div class="mining-status-card">
+                    <div class="status-indicator" id="miningStatus">
+                        <span class="indicator"></span>
+                        <span class="text">Mining: <span id="miningState">Stopped</span></span>
+                    </div>
+                    <div class="mining-stats">
+                        <div class="stat">
+                            <p class="label">Total Mined</p>
+                            <p class="value"><span id="totalMined">0.00000000</span> PLG</p>
+                        </div>
+                        <div class="stat">
+                            <p class="label">Current Rate</p>
+                            <p class="value"><span id="miningRate">0.00000001</span> PLG/sec</p>
+                        </div>
+                        <div class="stat">
+                            <p class="label">Mining Time</p>
+                            <p class="value"><span id="miningTime">00:00:00</span></p>
+                        </div>
+                        <div class="stat">
+                            <p class="label">USD Value</p>
+                            <p class="value">$<span id="miningUSDValue">0.00</span></p>
+                        </div>
+                    </div>
+                    <button class="btn-toggle-mining" id="toggleMiningBtn" onclick="toggleMining()">
+                        ⛏️ Start Mining
+                    </button>
+                </div>
+
+                <div class="mining-info-card">
+                    <h3>How Mining Works</h3>
+                    <ul>
+                        <li>Start mining to earn Pilgrim Coin (PLG)</li>
+                        <li>Mining starts from 0.00000001 PLG per second</li>
+                        <li>Earned PLG is automatically credited to your USD wallet</li>
+                        <li>1 PLG = $0.50 USD (Exchange Rate)</li>
+                        <li>Mining rate increases with time</li>
+                        <li>Keep the tab open to continue mining</li>
+                    </ul>
+
+                    <h3>Mining Tiers</h3>
+                    <div class="mining-tiers">
+                        <div class="tier">
+                            <span class="tier-badge">Bronze</span>
+                            <span>0.00000001 PLG/sec</span>
+                        </div>
+                        <div class="tier">
+                            <span class="tier-badge">Silver</span>
+                            <span>0.00000005 PLG/sec</span>
+                        </div>
+                        <div class="tier">
+                            <span class="tier-badge">Gold</span>
+                            <span>0.00000010 PLG/sec</span>
+                        </div>
+                        <div class="tier">
+                            <span class="tier-badge">Platinum</span>
+                            <span>0.00000050 PLG/sec</span>
+                        </div>
+                        <div class="tier">
+                            <span class="tier-badge">Diamond</span>
+                            <span>0.00000100 PLG/sec</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mining-history">
+                <h3>Mining History</h3>
+                <div class="history-list" id="miningHistory">
+                    <!-- Mining history will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Receive Section -->
+        <div id="receiveSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>📥 Receive Funds</h2>
+                <p>Receive crypto from external wallets, exchanges, and banks</p>
+            </div>
+
+            <div class="receive-options">
+                <div class="receive-option-card">
+                    <h3>💰 Blockchain Wallets</h3>
+                    <p>Bitcoin, Ethereum, Tether, and more</p>
+                    <button class="btn-receive-crypto" onclick="receiveCrypto('BTC')">Receive BTC</button>
+                    <button class="btn-receive-crypto" onclick="receiveCrypto('ETH')">Receive ETH</button>
+                    <button class="btn-receive-crypto" onclick="receiveCrypto('USDT')">Receive USDT</button>
+                </div>
+
+                <div class="receive-option-card">
+                    <h3>🏦 Exchanges</h3>
+                    <p>Coinbase, Binance, Kraken, and more</p>
+                    <button class="btn-receive-crypto" onclick="receiveFromExchange()">From Exchange</button>
+                </div>
+
+                <div class="receive-option-card">
+                    <h3>💳 Payment Platforms</h3>
+                    <p>Payeer, PayPal, and more</p>
+                    <button class="btn-receive-crypto" onclick="receiveFromPayeer()">From Payeer</button>
+                    <button class="btn-receive-crypto" onclick="receiveFromPayPal()">From PayPal</button>
+                </div>
+
+                <div class="receive-option-card">
+                    <h3>🌐 Global Bank</h3>
+                    <p>Direct bank transfers worldwide</p>
+                    <button class="btn-receive-crypto" onclick="receiveFromBank()">From Bank</button>
+                </div>
+
+                <div class="receive-option-card">
+                    <h3>💼 Investment</h3>
+                    <p>Receive investment returns</p>
+                    <button class="btn-receive-crypto" onclick="receiveInvestment()">Investment Returns</button>
+                </div>
+
+                <div class="receive-option-card">
+                    <h3>🌐 Matrix Sender</h3>
+                    <p>Receive via Matrix Network (XYZ)</p>
+                    <button class="btn-receive-crypto" onclick="receiveMatrix()">Matrix Transfer</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Send Section -->
+        <div id="sendSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>📤 Send Funds</h2>
+                <p>Send crypto and fiat to wallets, exchanges, and banks</p>
+            </div>
+
+            <div class="send-form">
+                <div class="form-group">
+                    <label>Select Currency</label>
+                    <select id="sendCurrency" onchange="updateSendForm()">
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="PLG">Pilgrim Coin (PLG)</option>
+                        <option value="USD">US Dollar (USD)</option>
+                        <option value="NGN">Nigerian Naira (NGN)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Recipient Type</label>
+                    <select id="recipientType" onchange="updateRecipientFields()">
+                        <option value="wallet">Crypto Wallet Address</option>
+                        <option value="exchange">Exchange</option>
+                        <option value="bank">Bank Account</option>
+                        <option value="payeer">Payeer</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="matrix">Matrix Network (XYZ)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Recipient Details</label>
+                    <input type="text" id="recipientAddress" placeholder="Enter wallet address, account number, or email">
+                </div>
+                <div class="form-group" id="recipientNameGroup" style="display: none;">
+                    <label>Recipient Name</label>
+                    <input type="text" id="recipientName" placeholder="Enter recipient name">
+                </div>
+                <div class="form-group" id="recipientBankGroup" style="display: none;">
+                    <label>Bank Name</label>
+                    <select id="recipientBank">
+                        <option value="">Select Bank</option>
+                        <option value="access">Access Bank</option>
+                        <option value="gtbank">GTBank</option>
+                        <option value="uba">UBA</option>
+                        <option value="firstbank">First Bank</option>
+                        <option value="zenith">Zenith Bank</option>
+                        <option value="opay">OPay</option>
+                        <option value="palmpay">Palmpay</option>
+                        <option value="moniepoint">Moniepoint</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="sendAmount" placeholder="Enter amount" step="0.00000001">
+                    <p class="available-balance">Available: <span id="sendAvailableBalance">0.00</span></p>
+                </div>
+                <div class="form-group">
+                    <label>Description (Optional)</label>
+                    <input type="text" id="sendDescription" placeholder="Enter description">
+                </div>
+                <div class="send-summary">
+                    <p><strong>Network Fee:</strong> <span id="networkFee">0.00</span></p>
+                    <p><strong>Total Amount:</strong> <span id="totalSendAmount">0.00</span></p>
+                </div>
+                <button class="btn-send-funds" onclick="sendFunds()">
+                    📤 Send Funds
+                </button>
+            </div>
+        </div>
+
+        <!-- Exchange Section -->
+        <div id="exchangeSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>🔄 Exchange</h2>
+                <p>Exchange between currencies</p>
+            </div>
+
+            <div class="exchange-form">
+                <div class="form-group">
+                    <label>From Currency</label>
+                    <select id="fromCurrency" onchange="updateExchangeRates()">
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="PLG">Pilgrim Coin (PLG)</option>
+                        <option value="USD">US Dollar (USD)</option>
+                        <option value="NGN">Nigerian Naira (NGN)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="exchangeAmount" placeholder="Enter amount" oninput="calculateExchange()">
+                    <p class="available-balance">Available: <span id="exchangeAvailableBalance">0.00</span></p>
+                </div>
+                <div class="exchange-arrow">⬇️</div>
+                <div class="form-group">
+                    <label>To Currency</label>
+                    <select id="toCurrency" onchange="updateExchangeRates()">
+                        <option value="BTC">Bitcoin (BTC)</option>
+                        <option value="ETH">Ethereum (ETH)</option>
+                        <option value="USDT">Tether (USDT)</option>
+                        <option value="PLG">Pilgrim Coin (PLG)</option>
+                        <option value="USD">US Dollar (USD)</option>
+                        <option value="NGN">Nigerian Naira (NGN)</option>
+                    </select>
+                </div>
+                <div class="exchange-rate-display">
+                    <p><strong>Exchange Rate:</strong> 1 <span id="fromRateLabel">BTC</span> = <span id="exchangeRate">0.00</span> <span id="toRateLabel">USD</span></p>
+                    <p><strong>You will receive:</strong> <span id="receiveAmount">0.00</span> <span id="receiveCurrencyLabel">USD</span></p>
+                    <p><strong>Fee (1%):</strong> <span id="exchangeFee">0.00</span></p>
+                </div>
+                <button class="btn-exchange" onclick="exchangeCurrency()">
+                    🔄 Exchange
+                </button>
+            </div>
+        </div>
+
+        <!-- Transactions Section -->
+        <div id="transactionsSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>📋 Transaction History</h2>
+                <div class="filters">
+                    <select id="transactionTypeFilter" onchange="filterTransactions()">
+                        <option value="all">All Types</option>
+                        <option value="receive">Receive</option>
+                        <option value="send">Send</option>
+                        <option value="exchange">Exchange</option>
+                        <option value="mining">Mining</option>
+                        <option value="deposit">Deposit</option>
+                        <option value="withdrawal">Withdrawal</option>
+                    </select>
+                    <select id="transactionCurrencyFilter" onchange="filterTransactions()">
+                        <option value="all">All Currencies</option>
+                        <option value="BTC">BTC</option>
+                        <option value="ETH">ETH</option>
+                        <option value="USDT">USDT</option>
+                        <option value="PLG">PLG</option>
+                        <option value="USD">USD</option>
+                        <option value="NGN">NGN</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="transactions-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Type</th>
+                            <th>From/To</th>
+                            <th>Amount</th>
+                            <th>Status</th>
+                            <th>TX ID</th>
+                        </tr>
+                    </thead>
+                    <tbody id="transactionsTableBody">
+                        <!-- Transactions will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Matrix Section -->
+        <div id="matrixSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>🌐 Matrix Network (XYZ)</h2>
+                <p>Send and receive funds through the Matrix network</p>
+            </div>
+
+            <div class="matrix-dashboard">
+                <div class="matrix-stats-card">
+                    <h3>Matrix Statistics</h3>
+                    <div class="stat-row">
+                        <span>Total Sent:</span>
+                        <span><span id="matrixTotalSent">0.00</span> USD</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Total Received:</span>
+                        <span><span id="matrixTotalReceived">0.00</span> USD</span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Network Members:</span>
+                        <span><span id="matrixMembers">0</span></span>
+                    </div>
+                    <div class="stat-row">
+                        <span>Your Matrix ID:</span>
+                        <span id="matrixId">Generating...</span>
+                    </div>
+                </div>
+
+                <div class="matrix-send-card">
+                    <h3>Send via Matrix</h3>
+                    <div class="form-group">
+                        <label>Matrix ID (XYZ)</label>
+                        <input type="text" id="matrixRecipientId" placeholder="Enter recipient Matrix ID (e.g., XYZ-12345)">
+                    </div>
+                    <div class="form-group">
+                        <label>Currency</label>
+                        <select id="matrixCurrency">
+                            <option value="USD">USD</option>
+                            <option value="BTC">BTC</option>
+                            <option value="ETH">ETH</option>
+                            <option value="USDT">USDT</option>
+                            <option value="PLG">PLG</option>
+                            <option value="NGN">NGN</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Amount</label>
+                        <input type="number" id="matrixAmount" placeholder="Enter amount">
+                    </div>
+                    <div class="form-group">
+                        <label>Message (Optional)</label>
+                        <input type="text" id="matrixMessage" placeholder="Enter message">
+                    </div>
+                    <button class="btn-matrix-send" onclick="sendMatrix()">
+                        🌐 Send via Matrix
+                    </button>
+                </div>
+            </div>
+
+            <div class="matrix-history">
+                <h3>Matrix Transactions</h3>
+                <div class="history-list" id="matrixHistory">
+                    <!-- Matrix history will be loaded here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Profile Section -->
+        <div id="profileSection" class="content-section" style="display: none;">
+            <div class="section-header">
+                <h2>👤 Profile Settings</h2>
+            </div>
+
+            <div class="profile-content">
+                <div class="profile-info-card">
+                    <h3>Personal Information</h3>
+                    <div class="form-group">
+                        <label>Full Name</label>
+                        <input type="text" id="profileName" placeholder="Enter your name" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Email</label>
+                        <input type="email" id="profileEmail" placeholder="Enter your email" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>Phone</label>
+                        <input type="tel" id="profilePhone" placeholder="Enter your phone">
+                    </div>
+                    <div class="form-group">
+                        <label>Country</label>
+                        <input type="text" id="profileCountry" placeholder="Enter your country">
+                    </div>
+                    <div class="form-group">
+                        <label>State</label>
+                        <input type="text" id="profileState" placeholder="Enter your state">
+                    </div>
+                    <div class="form-group">
+                        <label>Address</label>
+                        <input type="text" id="profileAddress" placeholder="Enter your address">
+                    </div>
+                    <button class="btn-save-profile" onclick="saveProfile()">
+                        💾 Save Profile
+                    </button>
+                </div>
+
+                <div class="security-card">
+                    <h3>Security</h3>
+                    <div class="form-group">
+                        <label>Current Password</label>
+                        <input type="password" id="currentPassword" placeholder="Enter current password">
+                    </div>
+                    <div class="form-group">
+                        <label>New Password</label>
+                        <input type="password" id="newPassword" placeholder="Enter new password">
+                    </div>
+                    <div class="form-group">
+                        <label>Confirm New Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm new password">
+                    </div>
+                    <button class="btn-change-password" onclick="changePassword()">
+                        🔒 Change Password
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Receive Modal -->
+    <div id="receiveModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>📥 Receive <span id="receiveCurrencyLabel">BTC</span></h3>
+                <span class="close" onclick="closeModals()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="receive-details">
+                    <p><strong>Your Wallet Address:</strong></p>
+                    <p class="wallet-address-display" id="receiveWalletAddress"></p>
+                    <button class="btn-copy" onclick="copyAddress()">📋 Copy Address</button>
+                </div>
+                <div class="qr-display">
+                    <canvas id="receiveQR"></canvas>
+                </div>
+                <div class="barcode-display">
+                    <p><strong>Barcode:</strong> <span id="receiveBarcode"></span></p>
+                </div>
+                <div class="receive-info">
+                    <h4>How to Receive:</h4>
+                    <ol>
+                        <li>Copy your wallet address or scan the QR code</li>
+                        <li>Send funds to this address from your exchange or wallet</li>
+                        <li>Wait for network confirmation</li>
+                        <li>Funds will appear in your wallet</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Deposit Modal -->
+    <div id="depositModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>💳 Deposit <span id="depositCurrencyLabel">USD</span></h3>
+                <span class="close" onclick="closeModals()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="depositAmount" placeholder="Enter amount" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Payment Method</label>
+                    <select id="depositMethod">
+                        <option value="card">Credit/Debit Card</option>
+                        <option value="bank">Bank Transfer</option>
+                        <option value="opay">OPay</option>
+                        <option value="palmpay">Palmpay</option>
+                        <option value="moniepoint">Moniepoint</option>
+                        <option value="crypto">Crypto (BTC/ETH/USDT)</option>
+                    </select>
+                </div>
+                <button class="btn-deposit" onclick="processDeposit()">
+                    💳 Deposit
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Withdraw Modal -->
+    <div id="withdrawModal" class="modal" style="display: none;">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>🏦 Withdraw <span id="withdrawCurrencyLabel">USD</span></h3>
+                <span class="close" onclick="closeModals()">&times;</span>
+            </div>
+            <div class="modal-body">
+                <p class="available-balance">Available: <span id="withdrawAvailableBalance"></span></p>
+                <div class="form-group">
+                    <label>Amount</label>
+                    <input type="number" id="withdrawAmount" placeholder="Enter amount" step="0.01">
+                </div>
+                <div class="form-group">
+                    <label>Withdrawal Method</label>
+                    <select id="withdrawMethod">
+                        <option value="bank">Bank Transfer</option>
+                        <option value="crypto">Crypto (BTC/ETH/USDT)</option>
+                        <option value="opay">OPay</option>
+                        <option value="palmpay">Palmpay</option>
+                        <option value="moniepoint">Moniepoint</option>
+                        <option value="paypal">PayPal</option>
+                        <option value="payeer">Payeer</option>
+                    </select>
+                </div>
+                <div class="form-group" id="withdrawBankGroup">
+                    <label>Bank Name</label>
+                    <select id="withdrawBank">
+                        <option value="">Select Bank</option>
+                        <option value="access">Access Bank</option>
+                        <option value="gtbank">GTBank</option>
+                        <option value="uba">UBA</option>
+                        <option value="firstbank">First Bank</option>
+                        <option value="zenith">Zenith Bank</option>
+                        <option value="opay">OPay</option>
+                        <option value="palmpay">Palmpay</option>
+                        <option value="moniepoint">Moniepoint</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Account/Wallet Address</label>
+                    <input type="text" id="withdrawAccount" placeholder="Enter account number or wallet address">
+                </div>
+                <div class="form-group">
+                    <label>Account Name</label>
+                    <input type="text" id="withdrawAccountName" placeholder="Enter account name">
+                </div>
+                <button class="btn-withdraw" onclick="processWithdrawal()">
+                    🏦 Withdraw
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
